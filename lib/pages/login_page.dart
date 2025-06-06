@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/utils/routes.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState(); //_ make it private
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String name = "";
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -12,7 +19,7 @@ class LoginPage extends StatelessWidget {
             Image.asset("assets/images/login_image.png", fit: BoxFit.cover),
             SizedBox(height: 20.0),
             Text(
-              "Welcome",
+              "Welcome $name",
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20.0),
@@ -29,6 +36,11 @@ class LoginPage extends StatelessWidget {
                       hintText: "Enter username",
                       labelText: "Username",
                     ),
+
+                    onChanged: (value) {
+                      name = value;
+                      setState(() {}); //changes state , call build method again
+                    },
                   ),
 
                   TextFormField(
@@ -40,13 +52,29 @@ class LoginPage extends StatelessWidget {
                   ),
                   SizedBox(height: 40.0),
 
-                  ElevatedButton(
-                    style: TextButton.styleFrom(minimumSize: Size(100, 40)),
-                    onPressed: () {
-                      Navigator.pushNamed(context, MyRoutes.homeRoute); //to navigate ,can run without validation
-                    },
-                    child: Text("Login"),
+                  Container(
+                    height: 50,
+                    width: 150,
+                    color: Colors.deepPurple,
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Login", 
+                       style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold,
+                        fontSize: 18 )
+                        ),
                   ),
+
+                  // ElevatedButton(
+                  //   style: TextButton.styleFrom(minimumSize: Size(100, 40)),
+                  //   onPressed: () {
+                  //     Navigator.pushNamed(
+                  //       context,
+                  //       MyRoutes.homeRoute,
+                  //     ); //to navigate ,can run without validation
+                  //   },
+                  //   child: Text("Login"),
+                  // ),
                 ],
               ),
             ),
