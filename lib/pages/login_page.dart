@@ -8,6 +8,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String name = "";
+  bool changeButton = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,18 +53,41 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 40.0),
 
-                  Container(
-                    height: 50,
-                    width: 150,
-                    color: Colors.deepPurple,
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Login", 
-                       style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold,
-                        fontSize: 18 )
-                        ),
+                  InkWell(
+                    
+                    onTap: () async {
+                      setState(() {
+                        changeButton= true;
+                      });
+
+                      await Future.delayed(Duration(seconds: 1)); //will wait for a second and then route to homeRoute
+                      Navigator.pushNamed(context, MyRoutes.homeRoute);
+                    },
+
+
+                    child: AnimatedContainer(
+                      duration: Duration(seconds:1),
+                      height: 50,
+                      width: changeButton? 50 : 150,  //when pressed the button it changes to true , it takes value 50
+                      // color: Colors.deepPurple, //remove while decoration
+                      alignment: Alignment.center,
+
+                      child: changeButton ? Icon(Icons.done,color: Colors.white,) : Text( //changing text to icon
+                        "Login", 
+                         style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold,
+                          fontSize: 18 )
+                          ),
+                    ),
                   ),
+                  decoration: BoxDecoration(
+                    // shape: changeButton ? BoxShape.circle: BoxShape.rectangle, //cant use bot
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.circular(changeButton ? 50 : 8 ), 
+
+                  );
+
+    
 
                   // ElevatedButton(
                   //   style: TextButton.styleFrom(minimumSize: Size(100, 40)),
