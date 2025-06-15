@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:flutter_catalog/widgets/drawer.dart';
-import 'package:flutter_catalog/widgets/item_widget.dart';
 
 class HomePage extends StatelessWidget {
-  int days = 30;
-  String name = "Codepur";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,9 +36,7 @@ class HomePage extends StatelessWidget {
                     child: GridTile(
                       header: Container(
                         padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Colors.deepPurple,
-                        ),
+                        decoration: BoxDecoration(color: Colors.deepPurple),
                         child: Text(
                           item.name,
                           style: TextStyle(color: Colors.white),
@@ -51,9 +45,7 @@ class HomePage extends StatelessWidget {
                       child: Image.network(item.image),
                       footer: Container(
                         padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                        ),
+                        decoration: BoxDecoration(color: Colors.black),
                         child: Text(
                           item.name,
                           style: TextStyle(color: Colors.white),
@@ -63,9 +55,7 @@ class HomePage extends StatelessWidget {
                   );
                 },
               )
-            : Center(
-                child: CircularProgressIndicator(),
-              ),
+            : Center(child: CircularProgressIndicator()),
       ),
       drawer: MyDrawer(),
     );
