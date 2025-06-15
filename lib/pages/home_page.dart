@@ -9,18 +9,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dummyList = List.generate(50, (index) => CatalogModel.items[0]); //generates dummy list of 50 items
     return Scaffold(
       appBar: AppBar(title: Text("Catalog App")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
+        child: (CatalogModel.items!=null && CatalogModel.items.isNotEmpty)? ListView.builder(
           //builder gives recycler view
-          itemCount: dummyList.length,
+          itemCount: CatalogModel.items.length,
           itemBuilder: (context, index) {
-            return ItemWidget(item: dummyList[index]);
+            return ItemWidget(item: CatalogModel.items[index]);
           },
-        ),
+        )
+        : Center(
+          child: CircularProgressIndicator(),
+        )
       ),
       drawer: MyDrawer(),
     );
